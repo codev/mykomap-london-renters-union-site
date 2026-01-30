@@ -1,0 +1,22 @@
+{
+  "name": "UPDATE ME",
+  "version": "0.1.0",
+  "description": "UPDATE ME",
+  "main": "src/index.ts",
+  "config": {
+    "deploy_to": "",
+    "deploy_user": "www-data",
+    "deploy_group": "www-data"
+  },
+  "scripts": {
+    "build": "mykomap-site-build -c config -s src -m node_modules/mykomap -d build www/*",
+    "deploy": "mykomap-site-deploy -f build/out/",
+    "server": "php -t build/out -S localhost:8080"
+  },
+  "author": "Digital Commons Cooperative",
+  "license": "UNLICENSED",
+  "repository": "github:DigitalCommons/UPDATE ME",
+  "dependencies": {
+    "mykomap": "github:DigitalCommons/mykomap#semver:^3.1.4"
+  }
+}

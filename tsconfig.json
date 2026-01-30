@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "paths": {
+      "mykomap/*": ["../src/map-app/*", "./node_modules/mykomap/src/map-app/*"]
+    },
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "target": "es2019",
+    "lib": ["DOM", "ES2021"],
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node"
+  }
+}
