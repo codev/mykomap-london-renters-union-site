@@ -1,97 +1,26 @@
 # NAME
 
-mykomap-site-example
+mykomap-london-renters-union-site
 
 <br/>
 
 # SYNOPSIS
 
-This is a demonstration/pilot project showing how to use the [`mykomap`][1] package.
+This is an experiment to configure DCC's [`mykomap`] to display London property licensing. Check out that repository as well.
 
 [1]: https://github.com/DigitalCommons/mykomap
 
-For details of how to do that, see the `mykomap` project's own
-documentation. This is merely a supplementary example, which you can
-use to base new projects on.
 
-<br/>
-
-# New Map Creation
-
-The following documents the creation a new MykoMap instance, and assumes the existence of the correct Linux / WSL environment.
-
-
-## Setting up your new map repo
-
-- Clone the mykomap-site-example to your local directory and create a new folder for your MykoMap instance <br/>
-```
-git clone --depth 1 git@github.com:DigitalCommons/mykomap-site-example.git my-new-mykomap
-```
-- Navigate to mykomap-site-example directory <br/>
-```
-cd mykomap-site-example
-```
-- Remove old Git history and configerations <br/>
-```
-rm -rf .git
-```
-- Start fresh with a clean Git repo <br/>
-```
-git init
-```
-- Add and commit files to the new repo<br/>
-```
-git add -A
-git commit -m "initial commit"
-```
-- Optional step - rename local master branch to main <br/>
-```
-git branch -m master main
-```
-- Create new remote repository \* <br/>
-\*This step can be carried out earlier in the process, if desired
-<br/>
-
-- Set the remote origin to your new repo and push to main
-```
-git remote add origin git@github.com:DigitalCommons/my-new-mykomap
-git push --set-upstream origin/main
-```
-- Create a development branch <br />
-```
-git checkout –b development
-```
-
-
-## Configuring your local map
-
-Create a `config` folder in the root directory of your new MykoMap instance : <br />
-```
-  mkdir config
-```
-or if you have VS Code open, just create a new folder in the root directory.
-
-
-### Map set-up for initial testing
-- Point the `dataSources url` within `src/config.ts` to `example.csv`
-
-```
-dataSources: [
-    {
-      id: 'data-exaple-update-me',
-      label: 'UPDATE ME',
-      type: 'csv',
-      url: 'example.csv',
-      transform: rowToObj,
-    },
-],
-```
+## Running the server
 
 - Start your local server and fire up you local MykoMap instance: <br/>
   `npm run build; npm run server`
 
+Because I'm running it in a docker development container I (marc) have to do:
+  `echo "http://$(hostname -I | tr -d ' '):8080"; npm run public-server`
 
-### Map set-up for custom configuration
+
+### DCC instructions for map set-up for custom configuration
 
 Update the config file in the src folder:
 - Update the baseUri and baseCountryUri
