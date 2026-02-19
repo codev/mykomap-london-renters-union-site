@@ -1,0 +1,18 @@
+{
+  "prefixes": {
+    "https://hackney.gov.uk/licensing/type/": "lic"
+  },
+  "vocabs": {
+    "lic:": {
+      "EN": {
+        "title": "Licence Type",
+        "terms": {
+          "lic:additionalHmo": "Additional HMO licence",
+          "lic:mandatoryHmo": "Mandatory HMO licence",
+          "lic:selective": "Selective licence",
+          "lic:257hmo": "257 HMO"
+        }
+      }
+    }
+  }
+}
