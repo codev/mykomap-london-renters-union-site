@@ -1,7 +1,7 @@
 {
   "name": "mykomap-london-renters-union-site",
   "version": "0.1.0",
-  "description": "London Renters Union - Hackney property licensing map",
+  "description": "London Renters Union - London property licensing map",
   "main": "src/index.ts",
   "config": {
     "deploy_to": "",

@@ -1,35 +1,49 @@
 # NAME
 
-mykomap-london-renters-union-site
+A project by the [London Renter's Union](https://londonrentersunion.org/) to map property licensing data.
 
-<br/>
+See the live version at https://map.renterpower.org/.
 
 # SYNOPSIS
 
-This is an experiment to configure DCC's [`mykomap`] to display London property licensing. Check out that repository as well.
-
-[1]: https://github.com/DigitalCommons/mykomap
-
+This is an experiment to configure DigitalCommon Coop (DCC)'s [`mykomap`](https://github.com/DigitalCommons/mykomap) to display London property licensing. <br/>
+Check out that repository if you require additional help setting up your environment.
 
 ## Running the server
 
-- Start your local server and fire up you local MykoMap instance: <br/>
-  `npm run build; npm run server`
+### Windows
 
-Because I'm running it in a docker development container I (marc) have to do:
-  `echo "http://$(hostname -I | tr -d ' '):8080"; npm run public-server`
+An easy way to build and run the server is to: </br>
 
+Install [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install) </br>
+Install [Node.js in the WSL environment](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl) </br>
+```
+apt install rsync php-cli php-curl
+npm install
+```
+
+Once you've installed all the requirements, within your in the WSL environment to start your local MykoMap instance: </br>
+
+```
+npm run build
+npm run server
+```
+
+Because I'm running it in a Docker development container I (marc) have to do: <br/>
+`echo "http://$(hostname -I | tr -d ' '):8080"; npm run public-server`
 
 ### DCC instructions for map set-up for custom configuration
 
-Update the config file in the src folder:
-- Update the baseUri and baseCountryUri
+Update the config file in the src folder: <br/>
+- Update the `baseUri` and `baseCountryUri`
+
 ```
 const baseUri = "https://dev.lod.coop/coop-name/";
 const baseCountryUri = "https://dev.lod.coop/essglobal/2.1/standard/countries-iso/";
 ```
 
-- Update the mapping in the `rowToObj` transformation object, to match those of your data source, adding your own custom fields where necessary, (uri, name, lat and lang are required)
+- Update the mapping in the `rowToObj` transformation object, to match those of your data source, adding your own custom fields where necessary (`uri`, `name`, `lat` and `lang` are required)
+
 ```
 const rowToObj = mkObjTransformer<Row, InitiativeObj>({
   uri: T.prefixed(baseUri).from('Identifier'), // Required field
@@ -45,7 +59,7 @@ const rowToObj = mkObjTransformer<Row, InitiativeObj>({
 });
 ```
 
-  - Add your custom fields to the field definitions
+- Add your custom fields to the field definitions
 
 ```
 type FieldsDef = Dictionary<PropDef | 'value' >;
@@ -63,7 +77,10 @@ const fields: FieldsDef = {
 };
 ```
 
-  - Update the `ConfigData object`, entering the correct values for `namedDataset, htmlTile, filterableFields and searchableFields`. If your map’s vocabs do not conform to `ESSGLOBAL` or have not been confirmed, a local vocabs document can be added to the codebase’s www folder, based on the values of your data sources `filterableFields`. The example below includes both local and remote vocabs.
+- Update the `ConfigData object`, entering the correct values for `namedDataset`, `htmlTile`, `filterableFields` and `searchableFields` <br/>
+If your map’s vocabs do not conform to `ESSGLOBAL` or have not been confirmed, a local vocabs document can be added to the codebase’s `www` folder, based on the values of your data source's `filterableFields` <br/>
+The example below includes both local and remote vocabs
+
 ```
 export const config: ConfigData = new ConfigData({
   namedDatasets: ["DatasetName"],
@@ -104,6 +121,6 @@ export const config: ConfigData = new ConfigData({
 });
 ```
 
-  - As with the vocabularies, if you do not have a remote data file, one can be added to the `www/` folder and referenced locally in the `dataSources` object.
-- Start your local server and fire up you local MykoMap instance: <br/>
+- As with the vocabularies, if you do not have a remote data file, one can be added to the `www/` folder and referenced locally in the `dataSources` object
+- Start your local server and fire up your local MykoMap instance: <br/>
   `npm run build; npm run server`
